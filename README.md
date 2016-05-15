@@ -27,6 +27,26 @@ $ npm install microkernel-mod-ctx microkernel-mod-options
 $ npm install microkernel-mod-config
 ```
 
+```js
+var Microkernel = require("microkernel")
+var kernel = new Microkernel()
+
+kernel.load([ "microkernel-mod-config", { configfile: "config.yaml" } ])
+
+kernel.add(class ExampleModule {
+    get module () {
+        return {
+            name:  "example",
+            after: [ "CONFIG" ]
+        }
+    }
+    start (kernel) {
+        let config = kernel.rs("config")
+        [...]
+    }
+})
+```
+
 License
 -------
 
