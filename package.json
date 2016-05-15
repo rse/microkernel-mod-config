@@ -18,14 +18,14 @@
     "homepage": "https://github.com/rse/microkernel-mod-config",
     "bugs":     "https://github.com/rse/microkernel-mod-config/issues",
     "dependencies": {
-        "fs-promise":           "~0.5.0",
-        "js-yaml":              "~3.6.1",
-        "co":                   "~4.6.0"
+        "fs-promise":              "~0.5.0",
+        "js-yaml":                 "~3.6.1",
+        "co":                      "~4.6.0"
     },
     "peerDependencies": {
-        "microkernel":          "*",
-        "microkernel-ctx":      "*",
-        "microkernel-options":  "*"
+        "microkernel":             "*",
+        "microkernel-mod-ctx":     "*",
+        "microkernel-mod-options": "*"
     },
     "scripts": {
         "prepublish": "jshint microkernel-mod-config.js && babel --presets es2015 microkernel-mod-config.js >microkernel-mod-config.js5"
