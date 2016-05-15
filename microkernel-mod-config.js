@@ -35,7 +35,7 @@ export default class Module {
     }
     get module () {
         return {
-            name:  "microkernel-config",
+            name:  "microkernel-mod-config",
             tag:   "CONFIG",
             group: "BOOT",
             after: [ "CTX", "OPTIONS" ]
