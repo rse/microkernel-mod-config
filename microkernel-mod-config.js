@@ -23,7 +23,7 @@
 */
 
 import path    from "path"
-import fs      from "fs-promise"
+import fs      from "mz/fs"
 import co      from "co"
 import YAML    from "js-yaml"
 
