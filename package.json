@@ -1,6 +1,6 @@
 {
     "name":        "microkernel-mod-config",
-    "version":     "0.9.8",
+    "version":     "0.9.9",
     "description": "Microkernel module for handling YAML configuration file",
     "keywords": [
         "microkernel", "module", "config"
