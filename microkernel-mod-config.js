@@ -22,12 +22,13 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-import path    from "path"
-import fs      from "mz/fs"
-import co      from "co"
-import YAML    from "js-yaml"
+/*  external requirements  */
+const path    = require("path")
+const fs      = require("mz/fs")
+const YAML    = require("js-yaml")
 
-export default class Module {
+/*  the Microkernel module  */
+class Module {
     constructor (options) {
         this.options = Object.assign({
             configfile: null
@@ -50,16 +51,17 @@ export default class Module {
                 help: "use YAML file for configuration", helpArg: "FILE" })
         })
     }
-    start (kernel) {
-        return co(function * () {
-            let configfile = kernel.rs("options:options").config
-            let exists = yield (fs.exists(configfile))
-            if (!exists)
-                throw new Error(`configuration file not found: ${configfile}`)
-            let yaml = yield (fs.readFile(configfile, "utf8"))
-            let config = YAML.safeLoad(yaml, { filename: configfile })
-            kernel.rs("config", config)
-        }.bind(this))
+    async start (kernel) {
+        let configfile = kernel.rs("options:options").config
+        let exists = await fs.exists(configfile)
+        if (!exists)
+            throw new Error(`configuration file not found: ${configfile}`)
+        let yaml = await fs.readFile(configfile, "utf8")
+        let config = YAML.safeLoad(yaml, { filename: configfile })
+        kernel.rs("config", config)
     }
 }
+
+/*  export the Microkernel module  */
+module.exports = Module
 
