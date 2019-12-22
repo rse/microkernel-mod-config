@@ -43,21 +43,22 @@ class Module {
         }
     }
     latch (kernel) {
-        let configfile = this.options.configfile !== null ? this.options.configfile :
+        const configfile = this.options.configfile !== null ? this.options.configfile :
             path.join(kernel.rs("ctx:basedir"), kernel.rs("ctx:program") + ".yaml")
         kernel.latch("options:options", (options) => {
             options.push({
                 name: "config", type: "string", "default": configfile,
-                help: "use YAML file for configuration", helpArg: "FILE" })
+                help: "use YAML file for configuration", helpArg: "FILE"
+            })
         })
     }
     async start (kernel) {
-        let configfile = kernel.rs("options:options").config
-        let exists = await fs.exists(configfile)
+        const configfile = kernel.rs("options:options").config
+        const exists = await fs.exists(configfile)
         if (!exists)
             throw new Error(`configuration file not found: ${configfile}`)
-        let yaml = await fs.readFile(configfile, "utf8")
-        let config = YAML.safeLoad(yaml, { filename: configfile })
+        const yaml = await fs.readFile(configfile, "utf8")
+        const config = YAML.safeLoad(yaml, { filename: configfile })
         kernel.rs("config", config)
     }
 }
