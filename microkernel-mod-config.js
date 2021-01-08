@@ -43,7 +43,8 @@ class Module {
         }
     }
     latch (kernel) {
-        const configfile = this.options.configfile !== null ? this.options.configfile :
+        const configfile = this.options.configfile !== null ?
+            this.options.configfile :
             path.join(kernel.rs("ctx:basedir"), kernel.rs("ctx:program") + ".yaml")
         kernel.latch("options:options", (options) => {
             options.push({
