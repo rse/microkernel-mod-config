@@ -58,7 +58,7 @@ class Module {
         if (!exists)
             throw new Error(`configuration file not found: ${configfile}`)
         const yaml = await fs.readFile(configfile, "utf8")
-        const config = YAML.safeLoad(yaml, { filename: configfile })
+        const config = YAML.load(yaml, { filename: configfile })
         kernel.rs("config", config)
     }
 }
